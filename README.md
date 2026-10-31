@@ -61,7 +61,7 @@ dem i galleriet.
 | `python3 tools/gen_sfx.py` | Genererar bara ändrade ljudeffekter. `--dry` visar vad det skulle bli. |
 | `python3 tools/build_audio.py` | Nivåjusterar `assets-src/` till `public/audio/` utan kostnad. |
 
-Musiken läggs som `assets-src/music/evil.mp3` och `assets-src/music/kind.mp3`. Barnläget saknar musik än så länge och är tyst tills filen finns.
+Musiken läggs som `assets-src/music/evil.mp3` och `assets-src/music/kind.mp3`.
 
 ## Tester
 
