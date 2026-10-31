@@ -1,0 +1,10 @@
+{
+  "_hjalp": "mode: 'evil' eller 'not-so-scary'. Allt annat än exakt 'evil' blir snällt läge. Ändringen gäller direkt, utan omstart. partyCode: tomt = öppet, annars måste gästerna ange koden.",
+  "mode": "evil",
+  "partyCode": "",
+  "maxPerMinute": 20,
+  "imageModel": "bytedance-seed/seedream-5-0-flash",
+  "fallbackImageModel": "x-ai/grok-imagine-image-2.0",
+  "captionModel": "anthropic/claude-sonnet-5",
+  "fallbackCaptionModel": "x-ai/grok-4.7"
+}

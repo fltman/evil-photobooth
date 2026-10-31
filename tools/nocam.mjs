@@ -1,0 +1,21 @@
+// Reservvägen: ingen kamera (som på http från en mobil). Bilden väljs i stället, och resten ska fungera.
+import { chromium } from 'playwright-core';
+const [file, name] = process.argv.slice(2);
+const browser = await chromium.launch({ channel: 'chrome', headless: true, args: ['--mute-audio', '--enable-unsafe-swiftshader'] });
+const page = await browser.newPage({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, deviceScaleFactor: 2 });
+const errors = [];
+page.on('pageerror', (e) => errors.push(String(e)));
+await page.goto(process.env.BOOTH_URL ?? 'http://localhost:8290');
+await page.waitForFunction(() => document.getElementById('enter').textContent);
+await page.click('#enter');
+await page.waitForSelector('#nocam:not([hidden])', { timeout: 8000 });
+console.log('reservtext:', await page.textContent('#nocam-text'));
+await page.setInputFiles('#upload', file);
+await page.waitForFunction(() => window.booth.mirror.ready(), null, { timeout: 8000 });
+await page.waitForTimeout(800);
+await page.evaluate(() => window.booth.mirror.startVeil(1));
+await page.waitForTimeout(2500);
+await page.screenshot({ path: `progress/${name}.png` });
+const snap = await page.evaluate(() => window.booth.mirror.snapshot('3:4').length);
+console.log('ögonblicksbild, tecken:', snap, 'ansikten:', await page.evaluate(() => window.booth.mirror.faces.length), errors.length ? errors : 'inga sidfel');
+await browser.close();

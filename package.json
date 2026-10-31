@@ -1,0 +1,21 @@
+{
+  "name": "evil-photobooth",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "description": "En ond fotobox för halloween: spegeln äter ditt ansikte medan modellen framkallar den du egentligen är.",
+  "scripts": {
+    "start": "node server/index.mjs",
+    "dev": "node --watch server/index.mjs",
+    "test": "node --test test/*.test.mjs",
+    "postinstall": "node tools/vendor.mjs",
+    "deploy": "tools/deploy.sh"
+  },
+  "dependencies": {
+    "@mediapipe/tasks-vision": "^0.10.0"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.50.0"
+  }
+}
